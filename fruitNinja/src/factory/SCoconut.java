@@ -3,10 +3,10 @@ import javafx.scene.image.Image;
 import Interfaces.IFruitNinja;
 
 public class SCoconut implements IFruitNinja{
-	private final int score=5;
+	private  final int score=5;
 	private  final String fruitType="COCONUT";
-	private  Image completeImage=new Image("CompleteCoconut.png");
-	private  Image slicedImage;
+	private  final  Image completeImage=new Image("CompleteCoconut.png");
+	private  final Image slicedImage=new Image("slicedCoconut.png");
 	
 	@Override
 	public int getScore() {

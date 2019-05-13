@@ -7,8 +7,8 @@ import Interfaces.IFruitNinja;
 public class Pineapple implements IFruitNinja {
 	private final int score=1;
 	private  final String fruitType="PINEAPPLE";
-	private  Image completeImage=new Image("CompletePineapple.png");
-	private  Image slicedImage;
+	private  final Image completeImage=new Image("CompletePineapple.png");
+	private  final Image slicedImage=new Image("slicedpineapple.png");
 	@Override
 	public int getScore() {
 		// TODO Auto-generated method stub
@@ -36,7 +36,5 @@ public class Pineapple implements IFruitNinja {
 		return null;
 	}
 
-
-	}
 
 }

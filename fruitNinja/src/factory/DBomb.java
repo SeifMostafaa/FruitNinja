@@ -1,14 +1,12 @@
 package factory;
-
 import javafx.scene.image.Image;
-
 import Interfaces.IFruitNinja;
 
 public class DBomb implements IFruitNinja{
 	private final int score=-1;
 	private  final String fruitType="DBomb";
-	private  Image completeImage=new Image("CompleteDBomb.png");
-	private  Image slicedImage;
+	private  final Image completeImage=new Image("CompleteDBomb.png");
+	private  final Image slicedImage=new Image("slicedDBomb.png");
 	@Override
 	public int getScore() {
 		return score;
@@ -29,7 +27,6 @@ public class DBomb implements IFruitNinja{
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return "LOSEONELIFE";
 	}
 

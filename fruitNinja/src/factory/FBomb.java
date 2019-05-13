@@ -5,10 +5,10 @@ import javafx.scene.image.Image;
 import Interfaces.IFruitNinja;
 
 public class FBomb implements IFruitNinja{
-	private final int score=0;
+	private  final int score=0;
 	private  final String fruitType="FBomb";
-	private  Image completeImage=new Image("CompleteFBomb");
-	private  Image slicedImage;
+	private  final Image completeImage=new Image("CompleteFBomb");
+	private  final Image slicedImage=new Image("slicedFBomb.png");
 	@Override
 	public int getScore() {
 		return score;

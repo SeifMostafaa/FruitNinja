@@ -5,8 +5,8 @@ import Interfaces.IFruitNinja;
 public class Apple implements IFruitNinja {
 	private final int score=1;
 	private  final String fruitType="Apple";
-	private  Image completeImage=new Image("CompleteApple.png");
-	private  Image slicedImage;
+	private  final Image completeImage=new Image("CompleteApple.png");
+	private  Image slicedImage=new Image("slicedApple.png");
 	@Override
 	public int getScore() {
 		return score;

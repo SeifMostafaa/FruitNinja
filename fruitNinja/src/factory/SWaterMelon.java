@@ -6,10 +6,10 @@ import Interfaces.IFruitNinja;
 
 public class SWaterMelon implements IFruitNinja {
 	
-	private final int score=5;
+	private  final int score=5;
 	private  final String fruitType="WATERMELON";
-	private  Image completeImage=new Image("CompleteWaterMelon.png");
-	private  Image slicedImage;
+	private  final Image completeImage=new Image("CompleteWaterMelon.png");
+	private  final Image slicedImage=new Image("slicedWatermelon.png");
 	
 	@Override
 	public int getScore() {
