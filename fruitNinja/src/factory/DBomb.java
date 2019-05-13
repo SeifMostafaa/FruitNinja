@@ -2,11 +2,18 @@ package factory;
 import javafx.scene.image.Image;
 import Interfaces.IFruitNinja;
 
-public class DBomb implements IFruitNinja{
+public class DBomb extends Fruits implements IFruitNinja{
 	private final int score=-1;
 	private  final String fruitType="DBomb";
 	private  final Image completeImage=new Image("CompleteDBomb.png");
-	private  final Image slicedImage=new Image("slicedDBomb.png");
+	private  final Image slicedImage=new Image("CompleteDBomb.png");
+	
+	public DBomb(){
+        setCompleteImage(completeImage);
+        setSlicedImage(slicedImage);
+        setScore(-20);
+        setName("Dbomb");
+    }
 	@Override
 	public int getScore() {
 		return score;

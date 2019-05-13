@@ -2,12 +2,18 @@ package factory;
 import javafx.scene.image.Image;
 import Interfaces.IFruitNinja;
 
-public class SCoconut implements IFruitNinja{
+public class SCoconut extends Fruits implements IFruitNinja{
 	private  final int score=5;
 	private  final String fruitType="COCONUT";
 	private  final  Image completeImage=new Image("CompleteCoconut.png");
 	private  final Image slicedImage=new Image("slicedCoconut.png");
 	
+	public SCoconut(){
+        setCompleteImage(completeImage);
+        setSlicedImage(slicedImage);
+        setScore(20);
+        setName("Coconcut");
+    }
 	@Override
 	public int getScore() {
 		return score;

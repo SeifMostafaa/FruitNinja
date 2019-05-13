@@ -4,13 +4,19 @@ import javafx.scene.image.Image;
 
 import Interfaces.IFruitNinja;
 
-public class SWaterMelon implements IFruitNinja {
+public class SWaterMelon extends Fruits implements IFruitNinja {
 	
 	private  final int score=5;
 	private  final String fruitType="WATERMELON";
 	private  final Image completeImage=new Image("CompleteWaterMelon.png");
 	private  final Image slicedImage=new Image("slicedWatermelon.png");
 	
+	public SWaterMelon(){
+        setCompleteImage(completeImage);
+        setSlicedImage(slicedImage);
+        setScore(10);
+        setName("WaterMelon");
+    }
 	@Override
 	public int getScore() {
 		return score;

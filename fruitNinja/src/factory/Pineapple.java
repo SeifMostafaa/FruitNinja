@@ -4,11 +4,18 @@ import javafx.scene.image.Image;
 
 import Interfaces.IFruitNinja;
 
-public class Pineapple implements IFruitNinja {
+public class Pineapple extends Fruits implements IFruitNinja{
 	private final int score=1;
 	private  final String fruitType="PINEAPPLE";
 	private  final Image completeImage=new Image("CompletePineapple.png");
-	private  final Image slicedImage=new Image("slicedpineapple.png");
+	private  final Image slicedImage=new Image("slicedPineapple.png");
+	public Pineapple(){
+        setCompleteImage(completeImage);
+        setSlicedImage(slicedImage);
+        setScore(15);
+        setName("Pineapple");
+    }
+	
 	@Override
 	public int getScore() {
 		// TODO Auto-generated method stub

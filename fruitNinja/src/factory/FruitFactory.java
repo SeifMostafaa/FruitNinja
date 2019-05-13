@@ -3,7 +3,7 @@ package factory;
 import Interfaces.IFruitNinja;
 
 public class FruitFactory {
-	public IFruitNinja getFruit(String fruitType) {
+	public Fruits getFruit(String fruitType) {
 	   if(fruitType.equalsIgnoreCase("ORANGE"))
 			return new Orange();
 		else if(fruitType.equalsIgnoreCase("PINEAPPLE"))
@@ -21,4 +21,7 @@ public class FruitFactory {
 		else
 			return null;
 	 }
+	
+	
+	
 }
