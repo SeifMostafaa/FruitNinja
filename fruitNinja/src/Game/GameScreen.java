@@ -31,13 +31,19 @@ import factory.*;
 
 
 public class GameScreen {
+	
+
 	Label  lb  = new Label();
+	Label Score=new Label();
+	int score=0;
 	private final Integer starttime=15;
 	 private Integer seconds= starttime;
 	 
 int  th = 15 ;
     Stage stage;
     Scene scene;
+    MainMenu menu;
+    ChooseMode ChooseMode;
     Random random=new Random();
     FruitFactory fruitFactory = new FruitFactory();
     ArrayList<Rectangle>fruitObjects=new ArrayList<>();
@@ -46,24 +52,25 @@ int  th = 15 ;
     Group root=new Group();
     public GameScreen(Stage stage){this.stage=stage;}
     public void prepareScene(){
-    	
-
     	 
     	 lb.setText("Time: 15");
-    	 
     	  lb.setFont(Font.font("Forte", 32));
-    	  Color c = Color.web("211f1f",1.0);
-    	  lb.setTextFill(c);
-    	 Stage windows;
+    	  lb.setTextFill(Color.FLORALWHITE);
+
+        Score.setText("Score: "+score);
+        Score.setFont(Font.font("Forte", 32));
+        Score.setTextFill(Color.FLORALWHITE);
+
+        Stage windows;
     	 
     	 
     	
     	 
       
-        scene=new Scene(root,1000,800);
+        scene=new Scene(root,800,600);
         ImageView image=new ImageView(new Image("Wiki-background.jpg"));
-        image.setFitHeight(800);
-        image.setFitWidth(1000);
+        image.setFitHeight(600);
+        image.setFitWidth(800);
         root.getChildren().addAll(image);
        
 
@@ -81,6 +88,10 @@ int  th = 15 ;
                         fruitObjects.get(i).setFill(new ImagePattern(Fruits.get(i).getSlicedImage()));
                         Fruits.get(i).removeFruit(fruitObjects.get(i));
                         //Code for is sliced and transition
+                        score+=Fruits.get(i).getScore();
+                        Score.setText("Score: "+score);
+                        Score.setFont(Font.font("Forte", 32));
+                        Score.setTextFill(Color.FLORALWHITE);
                         fruitObjects.remove(chosen);
                         Fruits.get(i).setParallelTransition(false);
                         Fruits.remove(i);
@@ -94,8 +105,8 @@ int  th = 15 ;
         });
         doTime();
         
-        HBox layout= new HBox(5);
-        layout.getChildren().add(lb);
+        HBox layout= new HBox(500);
+        layout.getChildren().addAll(lb,Score);
         root.getChildren().add(layout);
         
     
@@ -132,15 +143,18 @@ th -- ;
 		     time.stop();
 		    }
 	
-		    if(seconds==th){
-		    	if (th >= 10)
-		    	addfruit();
-		    	else
-		    	{
-		    		addfruit();
-		    		
-		    	}
-		    		    }
+		    if(seconds==th) {
+
+                if (th >= 10)
+                    addfruit();
+
+                else {
+                    addfruit();
+
+                }
+            }
+            if(seconds%5==0)
+                addBomb();
 		   }
 		 
 			
@@ -166,18 +180,34 @@ th -- ;
     	FruitNames.add("Apple");
     	FruitNames.add("Swatermelon");
     	FruitNames.add("Scoconut");
-    	FruitNames.add("Dbomb");
-    	FruitNames.add("Fbomb");
-    	Fruits fruits = fruitFactory.getFruit(FruitNames.get(random.nextInt(6)+1));
+
+    	Fruits fruits = fruitFactory.getFruit(FruitNames.get(random.nextInt(5)));
        
     	Fruits.add(fruits);
         Rectangle rectangle = new Rectangle(75, 75);
-        rectangle.setLayoutX(100 + random.nextDouble() * 400);
-        rectangle.setLayoutY(500);
-        fruits.AddFruit(rectangle,random.nextDouble()*100,-random.nextDouble()*400);
+        fruits.AddFruit(rectangle);
         rectangle.setFill(new ImagePattern(fruits.getCompleteImage()));
         fruitObjects.add(rectangle);
         root.getChildren().addAll(rectangle);
     }
+    public void addBomb(){
+        ArrayList<String>BombsNames=new ArrayList<>();
+        BombsNames.add("DBomb");
+        BombsNames.add("FBomb");
+        Fruits Bomb=fruitFactory.getFruit(BombsNames.get(random.nextInt(2)));
+        Fruits.add(Bomb);
+        Rectangle rectangle = new Rectangle(75, 75);
+        Bomb.AddFruit(rectangle);
+        rectangle.setFill(new ImagePattern(Bomb.getCompleteImage()));
+        fruitObjects.add(rectangle);
+        root.getChildren().addAll(rectangle);
+
+    }
+	public void setMenu(MainMenu menu) {
+		this.menu = menu;
+	}
+	public void setChooseMode(ChooseMode chooseMode) {
+		ChooseMode = chooseMode;
+	}
     
 }

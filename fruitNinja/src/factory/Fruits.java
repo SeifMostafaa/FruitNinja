@@ -1,12 +1,12 @@
 package factory;
 
-import javafx.animation.Animation;
-import javafx.animation.ParallelTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.shape.QuadCurve;
 import javafx.util.Duration;
+
+import java.util.Random;
 
 public abstract class Fruits {
 
@@ -48,15 +48,57 @@ public abstract class Fruits {
         this.name = name;
     }
 
-    public void AddFruit(Node node,double x,double y){
+    public void AddFruit(Node node){
+        Random random=new Random();
+        PathTransition pathTransition=new PathTransition();
+        QuadCurve quadCurve=new QuadCurve();
+        int x=random.nextInt(6)+1;
+        System.out.println(x);
+        switch (x){
+            case 1:
+                quadCurve.setStartX(0);
+                quadCurve.setEndX(800);
+                quadCurve.setControlX(300);
+                quadCurve.setControlY(-300);
+                break;
+            case 2:
+                quadCurve.setStartX(100);
+                quadCurve.setEndX(700);
+                quadCurve.setControlX(400);
+                quadCurve.setControlY(-200);
+                break;
+            case 3:
+                quadCurve.setStartX(200);
+                quadCurve.setEndX(800);
+                quadCurve.setControlX(400);
+                quadCurve.setControlY(-100);
+                break;
+            case 4:
+                quadCurve.setStartX(750);
+                quadCurve.setEndX(150);
+                quadCurve.setControlX(400);
+                quadCurve.setControlY(-250);
+                break;
+            case 5:
+                quadCurve.setStartX(550);
+                quadCurve.setEndX(0);
+                quadCurve.setControlX(350);
+                quadCurve.setControlY(-100);
+                break;
+            case 6:
+                quadCurve.setStartX(0);
+                quadCurve.setEndX(900);
+                quadCurve.setControlX(400);
+                quadCurve.setControlY(-50);
+                break;
+        }
 
-        TranslateTransition transition=new TranslateTransition();
-        transition.setNode(node);
-        transition.setCycleCount(1);
-        transition.setToY(y);
-        transition.setToX(x);
-        transition.setDuration(Duration.seconds(1));
-      
+        pathTransition.setDuration(Duration.seconds(random.nextInt(4)+2));
+        pathTransition.setCycleCount(1);
+        quadCurve.setStartY(650);
+        quadCurve.setEndY(650);
+        pathTransition.setNode(node);
+        pathTransition.setPath(quadCurve);
 
         RotateTransition rotateTransition=new RotateTransition();
         rotateTransition.setNode(node);
@@ -67,7 +109,7 @@ public abstract class Fruits {
         
 
 
-        parallelTransition=new ParallelTransition(rotateTransition,transition);
+        parallelTransition=new ParallelTransition(rotateTransition,pathTransition);
         parallelTransition.play();
        
 

@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -8,7 +10,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -16,23 +21,55 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainMenu {
+	ChooseMode choosemode ;
+	 public MainMenu(Stage stage , GameScreen GameScreen) {
+		 this.stage = stage ;
+		 this.gamescreen =GameScreen ;
+	 }
+	Stage stage;
+	Scene scene;
+	GameScreen gamescreen ;
+	private void showConfirmation() {
+		 
+	    Alert alert = new Alert(null);
+	   
+	    ButtonType b1=new ButtonType("Classic");
+	    ButtonType b2=new ButtonType("Arcade");
+	    ButtonType b3=new ButtonType("Back");
+	    
+	    alert.getButtonTypes().setAll(b1,b2,b3);
+	    
+	    Optional<ButtonType> option = alert.showAndWait();
+
+	   if(option.get()==b1)
+	    {
+	  	  //System.out.println("You chose Classic");
+		   gamescreen.prepareScene();
+		  stage.setScene(gamescreen.getScene());
+	    }
+	   else if(option.get()==b2) {
+	  	 System.out.println("You chose Arcade");
+	   }
+	 }
 	
-	 ImageView bg = new ImageView();
-	 Stage stage;
-	 Scene scene;
+	
+
+
+
+
+	ImageView bg = new ImageView();
+	 
 	 Group root=new Group();
 	 Canvas canvas=new Canvas(800,600);
 	 GraphicsContext gc = canvas.getGraphicsContext2D();
-	 
-	GridPane grid=new GridPane();
-	 
+	 GridPane grid=new GridPane();
      Button chooseMode=new Button() ;
      Button exitG=new Button();
      
      
-	 public MainMenu(Stage stage){this.stage=stage;}
+	
 	 public void prepareScene() {
-		 stage.initStyle(StageStyle.UNDECORATED);
+		 
 
 		
 		//--------------------Image View--------------------\\
@@ -76,6 +113,16 @@ public class MainMenu {
 		exitG.setBackground(null);
 		
 		
+		chooseMode.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+			
+			stage.setScene(choosemode.getScene());
+			}
+		});
+		
+		
 		exitG.setCursor(Cursor.HAND);
 		exitG.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -96,6 +143,13 @@ public class MainMenu {
 
 public Stage getStage() {
     return stage;
+}
+
+public void setGamescreen(GameScreen gamescreen) {
+	this.gamescreen = gamescreen;
+}
+public void setChoosemode(ChooseMode choosemode) {
+	this.choosemode = choosemode;
 }
 
 public Scene getScene() {
