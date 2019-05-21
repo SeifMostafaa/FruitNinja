@@ -3,16 +3,18 @@ import javafx.scene.image.Image;
 import Interfaces.IFruitNinja;
 
 public class SCoconut extends Fruits implements IFruitNinja{
-	private  final int score=5;
+	private   int score=1;
 	private  final String fruitType="COCONUT";
 	private  final  Image completeImage=new Image("CompleteCoconut.png");
 	private  final Image slicedImage=new Image("slicedCoconut.png");
+	private boolean Scoconut;
 	
 	public SCoconut(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
-        setScore(20);
+        setScore(1);
         setName("Coconcut");
+		setFruitsBool(true);
     }
 	@Override
 	public int getScore() {
@@ -34,8 +36,16 @@ public class SCoconut extends Fruits implements IFruitNinja{
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void setFruitsBool(boolean fruitState) {
+		this.Scoconut=fruitState;
+		
+	}
+	@Override
+	public boolean getFruitsState() {
+		return Scoconut;
 	}
 
 }

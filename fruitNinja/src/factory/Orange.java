@@ -7,14 +7,15 @@ import Interfaces.IFruitNinja;
 public class Orange extends Fruits implements IFruitNinja{
 	private  final int score=1;
 	private  final String fruitType="ORANGE";
-	private  final Image completeImage=new Image("CompleteOrange.png");
-	private  final Image slicedImage=new Image("CompleteOrange.png");
-	
+	private  final Image completeImage=new Image("Orange.png");
+	private  final Image slicedImage=new Image("SlicedOrange.png");
+	private boolean orange;
 	public Orange(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
-        setScore(10);
+        setScore(1);
         setName("Orange");
+		setFruitsBool(true);
     }
 
 	@Override
@@ -25,7 +26,6 @@ public class Orange extends Fruits implements IFruitNinja{
 
 	@Override
 	public Image getImage(String imageType) {
-		// TODO Auto-generated method stub
 		if(imageType.equalsIgnoreCase("COMPLETE")) {
 			return completeImage;
 		}
@@ -35,14 +35,22 @@ public class Orange extends Fruits implements IFruitNinja{
 
 	@Override
 	public String getFruitType() {
-		// TODO Auto-generated method stub
 		return fruitType;
 	}
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setFruitsBool(boolean fruitState) {
+		this.orange=fruitState;
+	}
+
+	@Override
+	public boolean getFruitsState() {
+		return orange;
 	}
 
 

@@ -6,16 +6,18 @@ import Interfaces.IFruitNinja;
 
 public class SWaterMelon extends Fruits implements IFruitNinja {
 	
-	private  final int score=5;
-	private  final String fruitType="WATERMELON";
+	private   int score=1;
+	private   String fruitType="WATERMELON";
 	private  final Image completeImage=new Image("CompleteWaterMelon.png");
 	private  final Image slicedImage=new Image("slicedWatermelon.png");
+	private boolean Swatermelon;
 	
 	public SWaterMelon(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
-        setScore(10);
+        setScore(5);
         setName("WaterMelon");
+		setFruitsBool(true);
     }
 	@Override
 	public int getScore() {
@@ -37,10 +39,15 @@ public class SWaterMelon extends Fruits implements IFruitNinja {
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
+	@Override
+	public void setFruitsBool(boolean fruitState) {
+		this.Swatermelon=fruitState;
+		
+	}
+	@Override
+	public boolean getFruitsState() {
+		return Swatermelon;
+	}
 }

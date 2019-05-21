@@ -31,43 +31,41 @@ import factory.*;
 
 
 public class GameScreen {
+	
+
 	Label  lb  = new Label();
-	private final Integer starttime=15;
-	 private Integer seconds= starttime;
-	 
-int  th = 15 ;
+	Label Score=new Label();
+	int score=0;
     Stage stage;
     Scene scene;
-    Random random=new Random();
-    FruitFactory fruitFactory = new FruitFactory();
-    ArrayList<Rectangle>fruitObjects=new ArrayList<>();
-    ArrayList<Fruits>Fruits=new ArrayList<>();
-    
-    Group root=new Group();
+    MainMenu menu;
+    ChooseMode ChooseMode;
+    GameOver gameOver;
+    Context context=new Context();
+
     public GameScreen(Stage stage){this.stage=stage;}
-    public void prepareScene(){
-    	
+    public void prepareScene(Context context){
 
-    	 
-    	 lb.setText("Time: 15");
-    	 
-    	  lb.setFont(Font.font("Forte", 32));
-    	  Color c = Color.web("211f1f",1.0);
-    	  lb.setTextFill(c);
-    	 Stage windows;
-    	 
-    	 
-    	
-    	 
-      
-        scene=new Scene(root,1000,800);
+        context.resetGame();
+        Group root=new Group();
+        this.context=context;
+    	lb.setText("Time: "+context.getSeconds());
+    	lb.setFont(Font.font("Forte", 32));
+    	lb.setTextFill(Color.FLORALWHITE);
+
+        Score.setText("Score: "+score);
+        Score.setFont(Font.font("Forte", 32));
+        Score.setTextFill(Color.FLORALWHITE);
+
+        Stage windows;
+
+        scene=new Scene(root,800,600);
+
+
         ImageView image=new ImageView(new Image("Wiki-background.jpg"));
-        image.setFitHeight(800);
-        image.setFitWidth(1000);
+        image.setFitHeight(600);
+        image.setFitWidth(800);
         root.getChildren().addAll(image);
-       
-
-      
        
 
         scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -75,109 +73,35 @@ int  th = 15 ;
             public void handle(MouseEvent event) {
                 Node chosen=event.getPickResult().getIntersectedNode();
                 if(chosen!=null){
-                for(int i=0;i<fruitObjects.size();i++){
-                    if(chosen.equals(fruitObjects.get(i))){
-                        System.out.println(Fruits.get(i).getName());
-                        fruitObjects.get(i).setFill(new ImagePattern(Fruits.get(i).getSlicedImage()));
-                        Fruits.get(i).removeFruit(fruitObjects.get(i));
-                        //Code for is sliced and transition
-                        fruitObjects.remove(chosen);
-                        Fruits.get(i).setParallelTransition(false);
-                        Fruits.remove(i);
-
-
-
-                    }
-                }
+                    context.SliceFruit(chosen);
+                    Score.setText("Score: "+context.getScore());
                 }
             }
         });
-        doTime();
-        
-        HBox layout= new HBox(5);
-        layout.getChildren().add(lb);
-        root.getChildren().add(layout);
-        
-    
-        
+        context.doTime(root,lb,stage,gameOver);
+        HBox layout= new HBox(500);
+        layout.getChildren().addAll(lb,Score);
+        HBox hearts=new HBox(20);
+        hearts.setLayoutX(300);
+        hearts.setLayoutY(0);
+        context.AddHearts(hearts);
+        root.getChildren().addAll(layout,hearts);
        
     }
-    
-
-
     public Stage getStage() {
         return stage;
     }
-
     public Scene getScene() {
         return scene;
     }
+	public void setMenu(MainMenu menu) {
+		this.menu = menu;
+	}
+	public void setChooseMode(ChooseMode chooseMode) {
+		ChooseMode = chooseMode;
+	}
 
-    
-    private void doTime() {
-     Timeline time= new Timeline();
-     
-     
-     KeyFrame frame= new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>(){
-
-		@Override
-		public void handle(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-th -- ;
-		    seconds--;
-		    lb.setText("Time : "+seconds.toString());
-		    if(seconds<=0){
-		    	
-		    	System.exit(0);
-		     time.stop();
-		    }
-	
-		    if(seconds==th){
-		    	if (th >= 10)
-		    	addfruit();
-		    	else
-		    	{
-		    		addfruit();
-		    		
-		    	}
-		    		    }
-		   }
-		 
-			
-		});
-
-
-     
-     time.setCycleCount(Timeline.INDEFINITE);
-     time.getKeyFrames().add(frame);
-     if(time!=null){
-      time.stop();
-     }
-     time.play();
-     
-     
+    public void setGameOver(GameOver gameOver) {
+        this.gameOver = gameOver;
     }
-    
-    
-    public void addfruit() {
-    	ArrayList <String> FruitNames=new ArrayList<>();
-    	FruitNames.add("Orange");
-    	FruitNames.add("Pineapple");
-    	FruitNames.add("Apple");
-    	FruitNames.add("Swatermelon");
-    	FruitNames.add("Scoconut");
-    	FruitNames.add("Dbomb");
-    	FruitNames.add("Fbomb");
-    	Fruits fruits = fruitFactory.getFruit(FruitNames.get(random.nextInt(6)+1));
-       
-    	Fruits.add(fruits);
-        Rectangle rectangle = new Rectangle(75, 75);
-        rectangle.setLayoutX(100 + random.nextDouble() * 400);
-        rectangle.setLayoutY(500);
-        fruits.AddFruit(rectangle,random.nextDouble()*100,-random.nextDouble()*400);
-        rectangle.setFill(new ImagePattern(fruits.getCompleteImage()));
-        fruitObjects.add(rectangle);
-        root.getChildren().addAll(rectangle);
-    }
-    
 }

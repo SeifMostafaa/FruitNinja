@@ -5,4 +5,6 @@ public interface IFruitNinja {
 	public Image getImage(String imageType);
 	public String getFruitType();
 	public String getFruitSpecial();
+	public void setFruitsBool(boolean fruitState);
+	public boolean getFruitsState();
 }

@@ -11,14 +11,25 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	primaryStage.initStyle(StageStyle.UNDECORATED);
     	
-    	MainMenu MainMenu=new MainMenu(primaryStage);
+        ChooseMode choosemode =new ChooseMode (primaryStage);
     	GameScreen GameScreen=new GameScreen(primaryStage);
-    	
+    	MainMenu MainMenu=new MainMenu(primaryStage , GameScreen);
+        GameOver gameOver=new GameOver(primaryStage);
 
-    	GameScreen.prepareScene();
-        primaryStage.setScene(GameScreen.getScene());
-      
+        MainMenu.setChoosemode(choosemode);
+        choosemode.setGamescreen(GameScreen);
+        choosemode.setMenu(MainMenu);
+        GameScreen.setGameOver(gameOver);
+    	gameOver.setMainMenu(MainMenu);
+    	gameOver.setChooseMode(choosemode);
+
+    	MainMenu.prepareScene();
+    	choosemode.preparescene();
+
+    	
+        primaryStage.setScene(MainMenu.getScene());
         primaryStage.show();
     }
 }

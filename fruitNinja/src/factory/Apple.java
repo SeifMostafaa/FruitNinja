@@ -6,13 +6,15 @@ public class Apple  extends Fruits implements IFruitNinja {
 	private final int score=1;
 	private  final String fruitType="Apple";
 	private  final Image completeImage=new Image("CompleteApple.png");
-	private  Image slicedImage=new Image("CompleteApple.png");
+	private  Image slicedImage=new Image("slicedApple.png");
+	private boolean apple;
 	
 	public Apple(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
-        setScore(5);
+        setScore(1);
         setName("Apple");
+        setFruitsBool(true);
     }
 	
 	@Override
@@ -35,8 +37,17 @@ public class Apple  extends Fruits implements IFruitNinja {
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setFruitsBool(boolean fruitState) {
+		this.apple=fruitState;
+	}
+
+	@Override
+	public boolean getFruitsState() {
+		return apple;
 	}
 
 }

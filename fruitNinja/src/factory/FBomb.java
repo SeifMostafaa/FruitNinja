@@ -7,14 +7,15 @@ import Interfaces.IFruitNinja;
 public class FBomb extends Fruits implements IFruitNinja{
 	private  final int score=0;
 	private  final String fruitType="FBomb";
-	private  final Image completeImage=new Image("CompleteFBomb.png");
-	private  final Image slicedImage=new Image("CompleteFBomb.png");
-
+	private  final Image completeImage=new Image("FBomb.png");
+	private  final Image slicedImage=new Image("FBomb.png");
+	private boolean fBomb;
 	public FBomb(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
-        setScore(-10000);
+        setScore(0);
         setName("Fbomb");
+		setFruitsBool(true);
     }
 	@Override
 	public int getScore() {
@@ -36,8 +37,15 @@ public class FBomb extends Fruits implements IFruitNinja{
 
 	@Override
 	public String getFruitSpecial() {
-		// TODO Auto-generated method stub
 		return "TERIMENATE";
+	}
+	@Override
+	public void setFruitsBool(boolean fruitState) {
+		this.fBomb=fruitState;
+	}
+	@Override
+	public boolean getFruitsState() {
+		return fBomb;
 	}
 
 }
