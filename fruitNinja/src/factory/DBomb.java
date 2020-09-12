@@ -7,11 +7,13 @@ public class DBomb extends Fruits implements IFruitNinja{
 	private  final String fruitType="DBomb";
 	private  final Image completeImage=new Image("CompleteDBomb.png");
 	private  final Image slicedImage=new Image("CompleteDBomb.png");
+	private Image splashImage=new Image("DBombSplash.png");
 	private boolean dBomb;
 	
 	public DBomb(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+        setSplashImage(splashImage);
         setScore(-10);
         setName("Dbomb");
 		setFruitsBool(true);

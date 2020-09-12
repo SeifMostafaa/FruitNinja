@@ -7,11 +7,13 @@ public class SCoconut extends Fruits implements IFruitNinja{
 	private  final String fruitType="COCONUT";
 	private  final  Image completeImage=new Image("CompleteCoconut.png");
 	private  final Image slicedImage=new Image("slicedCoconut.png");
+	private Image splashImage=new Image("CoconutSplash.png");
 	private boolean Scoconut;
 	
 	public SCoconut(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+		setSplashImage(splashImage);
         setScore(1);
         setName("Coconcut");
 		setFruitsBool(true);

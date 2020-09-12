@@ -9,10 +9,12 @@ public class Pineapple extends Fruits implements IFruitNinja{
 	private  final String fruitType="PINEAPPLE";
 	private  final Image completeImage=new Image("CompletePineapple.png");
 	private  final Image slicedImage=new Image("slicedPineapple.png");
+	private Image splashImage=new Image("PineAppleSplash.png");
 	private boolean pineapple;
 	public Pineapple(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+		setSplashImage(splashImage);
         setScore(1);
         setName("Pineapple");
 		setFruitsBool(true);

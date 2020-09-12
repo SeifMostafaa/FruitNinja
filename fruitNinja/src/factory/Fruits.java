@@ -7,9 +7,12 @@ import Interfaces.IStrategy;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.QuadCurve;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -21,6 +24,7 @@ public abstract class Fruits implements IFruitNinja {
 
    private Image completeImage;
    private Image slicedImage;
+   private Image splashImage;
    private int score;
    private String name;
    boolean Sliced=false;
@@ -40,6 +44,14 @@ public abstract class Fruits implements IFruitNinja {
 
     public void setSlicedImage(Image slicedImage) {
         this.slicedImage = slicedImage;
+    }
+
+    public void setSplashImage(Image splashImage) {
+        this.splashImage = splashImage;
+    }
+
+    public Image getSplashImage() {
+        return splashImage;
     }
 
     public int getScore() {
@@ -140,7 +152,19 @@ public abstract class Fruits implements IFruitNinja {
         if(x) parallelTransition.play();
         else parallelTransition.stop();
     }
-    public void removeFruit( Rectangle node ,Fruits fruit){ //throws the fruit down the screen
+    public void removeFruit(Rectangle node , Fruits fruit, double x, double y, Group group){ //throws the fruit down the screen
+
+        ImageView imageView=new ImageView(fruit.getSplashImage());
+        FadeTransition fadeTransition=new FadeTransition(Duration.seconds(3),imageView);
+
+        fadeTransition.setFromValue(0.5);
+        fadeTransition.setToValue(0.0);
+        imageView.setLayoutX(x);
+        imageView.setLayoutY(y);
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        group.getChildren().add(imageView);
+        fadeTransition.play();
         node.setFill(new ImagePattern(fruit.getSlicedImage()));
         fruit.setSliced(true);
         fruit.setParallelTransition(false);

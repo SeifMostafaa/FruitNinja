@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -23,14 +24,16 @@ public class GameOver{
 	Scene scene;
 	MainMenu mainMenu;
 	ChooseMode chooseMode;
-	
+	AudioClip audioClip;
 	 GridPane grid=new GridPane();
 String score;
 	public GameOver(Stage stage) {
 		this.stage = stage;
 	}
 
-	public void prepareScene(int Score , int slot ) {
+	public void prepareScene(int Score , int slot,AudioClip audioClip) {
+		this.audioClip=audioClip;
+
 		score = Integer.toString(Score);
 		Group root=new Group();
 		
@@ -96,6 +99,8 @@ String score;
 		retry.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				audioClip.stop();
+				chooseMode.playAudio();
 				stage.setScene(chooseMode.getScene());
 			}
 		});
@@ -104,7 +109,8 @@ String score;
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-
+				audioClip.stop();
+				mainMenu.playAudio();
 				stage.setScene(mainMenu.getScene());
 			}
 			

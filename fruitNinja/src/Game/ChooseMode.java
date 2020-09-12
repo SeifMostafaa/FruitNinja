@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -22,27 +23,29 @@ public class ChooseMode   {
 	Scene scene ;
 	GameScreen gamescreen ;
 	MainMenu  menu ;
-	
-	 Group root = new Group();
+	DifficultyChoose difficultyChoose;
+	Context context=new Context();
 	 Canvas canvas = new Canvas(800,600);
      GraphicsContext gc = canvas.getGraphicsContext2D();
-	 GridPane grid=new GridPane();
-	    Button timer=new Button();
-	    Button arcade=new Button ();
-	    Button classic=new Button();
-	    Button back=new Button ();
-	    Stage stage ;
-	    Context context=new Context();
+     AudioClip audioClip;
+	Stage stage ;
+
 	    public ChooseMode(Stage stage) {
 	    	this.stage = stage;
 	    }
 		 
-	public void preparescene() {
-		
-		
-		
+	public void preparescene(AudioClip audioClip) {
 
-		 
+        this.audioClip=audioClip;
+		Button timer=new Button();
+		Button arcade=new Button ();
+		Button classic=new Button();
+		Button back=new Button ();
+
+		Group root = new Group();
+
+		GridPane grid=new GridPane();
+
 		 Image background=new Image ("Wiki-background.jpg");
 			bg.setImage(background);
 			bg.setFitHeight(600);
@@ -94,8 +97,8 @@ public class ChooseMode   {
 				public void handle(ActionEvent arg0) {
 					context=new Context();
 					context.setStrategy(new ArcadeMode());
-					  gamescreen.prepareScene(context);
-					  stage.setScene(gamescreen.getScene());				}
+					  difficultyChoose.prepareScene(context,audioClip);
+					  stage.setScene(difficultyChoose.getScene());				}
 			});
 			classic.setCursor(Cursor.HAND);
 		    classic.setOnAction(new EventHandler<ActionEvent>() {
@@ -103,8 +106,8 @@ public class ChooseMode   {
 				public void handle(ActionEvent event) {
 					context=new Context();
 					context.setStrategy(new ClassicMode());
-					gamescreen.prepareScene(context);
-					stage.setScene(gamescreen.getScene());
+					difficultyChoose.prepareScene(context,audioClip);
+					stage.setScene(difficultyChoose.getScene());
 				}
 			});
 			back.setCursor(Cursor.HAND);
@@ -133,7 +136,14 @@ public class ChooseMode   {
 	public void setGamescreen(GameScreen gamescreen) {
 		this.gamescreen = gamescreen;
 	}
+	public void setDifficultyChoose(DifficultyChoose difficultyChoose) {
+		this.difficultyChoose = difficultyChoose;
+	}
 	public Scene getScene() {
-		return scene;
+	    	return scene;
+	}
+	public void playAudio(){
+		audioClip=new AudioClip("file:menu.mp3");
+		audioClip.play();
 	}
 }

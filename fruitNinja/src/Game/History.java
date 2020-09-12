@@ -32,7 +32,7 @@ public class History {
 	public void saveArcade(int scoree ) {
 	
 		 try {
-			 System.out.println("d5lt");
+
 			             DocumentBuilderFactory dbFactory =
 				         DocumentBuilderFactory.newInstance();
 				         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

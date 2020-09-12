@@ -17,16 +17,21 @@ public class Main extends Application {
     	GameScreen GameScreen=new GameScreen(primaryStage);
     	MainMenu MainMenu=new MainMenu(primaryStage , GameScreen);
         GameOver gameOver=new GameOver(primaryStage);
+        DifficultyChoose difficultyChoose=new DifficultyChoose(primaryStage);
 
         MainMenu.setChoosemode(choosemode);
         choosemode.setGamescreen(GameScreen);
         choosemode.setMenu(MainMenu);
+        choosemode.setDifficultyChoose(difficultyChoose);
+        difficultyChoose.setGameScreen(GameScreen);
+        difficultyChoose.setChooseMode(choosemode);
         GameScreen.setGameOver(gameOver);
-    	gameOver.setMainMenu(MainMenu);
+        gameOver.setMainMenu(MainMenu);
     	gameOver.setChooseMode(choosemode);
 
+
     	MainMenu.prepareScene();
-    	choosemode.preparescene();
+
 
     	
         primaryStage.setScene(MainMenu.getScene());

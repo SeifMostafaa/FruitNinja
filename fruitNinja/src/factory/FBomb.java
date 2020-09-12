@@ -9,10 +9,12 @@ public class FBomb extends Fruits implements IFruitNinja{
 	private  final String fruitType="FBomb";
 	private  final Image completeImage=new Image("FBomb.png");
 	private  final Image slicedImage=new Image("FBomb.png");
+	private Image splashImage=new Image("WaterMelonSplash.png");
 	private boolean fBomb;
 	public FBomb(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+        setSplashImage(splashImage);
         setScore(0);
         setName("Fbomb");
 		setFruitsBool(true);

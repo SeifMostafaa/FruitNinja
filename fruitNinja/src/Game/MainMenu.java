@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -37,12 +38,12 @@ public class MainMenu {
 	 GridPane grid=new GridPane();
      Button chooseMode=new Button() ;
      Button exitG=new Button();
-     
+     AudioClip audioClip;
      
 	
 	 public void prepareScene() {
-		 
-
+		 audioClip=new AudioClip("file:menu.mp3");
+		 audioClip.play();
 		
 		//--------------------Image View--------------------\\
 		Image background=new Image ("Wiki-background.jpg");
@@ -89,8 +90,10 @@ public class MainMenu {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-			
+
+			choosemode.preparescene(audioClip);
 			stage.setScene(choosemode.getScene());
+
 			}
 		});
 		
@@ -125,6 +128,11 @@ public void setChoosemode(ChooseMode choosemode) {
 }
 
 public Scene getScene() {
-    return scene;
+
+	 	return scene;
 }
+	public void playAudio(){
+		audioClip=new AudioClip("file:menu.mp3");
+		audioClip.play();
+	}
 }

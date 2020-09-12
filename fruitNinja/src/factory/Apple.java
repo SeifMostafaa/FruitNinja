@@ -7,6 +7,7 @@ public class Apple  extends Fruits implements IFruitNinja {
 	private  final String fruitType="Apple";
 	private  final Image completeImage=new Image("CompleteApple.png");
 	private  Image slicedImage=new Image("slicedApple.png");
+	private Image splashImage=new Image("AppleSplash.png");
 	private boolean apple;
 	
 	public Apple(){
@@ -14,6 +15,7 @@ public class Apple  extends Fruits implements IFruitNinja {
         setSlicedImage(slicedImage);
         setScore(1);
         setName("Apple");
+        setSplashImage(splashImage);
         setFruitsBool(true);
     }
 	

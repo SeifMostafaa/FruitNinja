@@ -10,11 +10,13 @@ public class SWaterMelon extends Fruits implements IFruitNinja {
 	private   String fruitType="WATERMELON";
 	private  final Image completeImage=new Image("CompleteWaterMelon.png");
 	private  final Image slicedImage=new Image("slicedWatermelon.png");
+	private Image splashImage=new Image("WaterMelonSplash.png");
 	private boolean Swatermelon;
 	
 	public SWaterMelon(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+		setSplashImage(splashImage);
         setScore(5);
         setName("WaterMelon");
 		setFruitsBool(true);

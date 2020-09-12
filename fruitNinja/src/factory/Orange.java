@@ -9,13 +9,16 @@ public class Orange extends Fruits implements IFruitNinja{
 	private  final String fruitType="ORANGE";
 	private  final Image completeImage=new Image("Orange.png");
 	private  final Image slicedImage=new Image("SlicedOrange.png");
+	private Image splashImage=new Image("OrangeSplash.png");
 	private boolean orange;
 	public Orange(){
         setCompleteImage(completeImage);
         setSlicedImage(slicedImage);
+		setSplashImage(splashImage);
         setScore(1);
         setName("Orange");
 		setFruitsBool(true);
+
     }
 
 	@Override
